@@ -14,40 +14,66 @@
 <body>
     <div class="wrapper">
         <div class="panelLeft">
-            
+
         </div>
 
         <div class="practice">
             <h1>Hello world in JavaScript
             </h1>
             <p>
-                Please display a hello world message in JavaScript. 
+                Please display a hello world message in JavaScript.
                 <script>
-                    document.title = "JavaScript Basic -- In class practice -- Yilian Zhang";
+                    document.title = "JavaScript Basic -- In class practice -- Cody Nguyen";
                     // use document.write to display a message
-                    
+                    document.write("<p> Hello Message </p>");
+                    document.writeln("<p>Hello World</p>");
                     // use console.log to display a message   
-                  
-                    
+                    console.log("For debugging purposes");
+
                 </script>
             </p>
-            <p> Please import external file hello.js here. 
-                
+            <p> Please import external file hello.js here.
+                <script src="js/hello.js"></script>
             </p>
         </div>
 
         <div class="practice">
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
+            <script>
+                var a = 3;
+                var b = 5;
+                var c = a + b;
+                var d = "Hello World";
+                console.log(typeof (d));
+                document.write("<p>" + a + "+" + b + "=" + c + "</p>");
 
+                /* When to use LET or VAR */
+                var message = "Great";
+                if (true) {
+                    var message = "fantastic";
+                    console.log("IN the if " + message);
+                }
+                console.log(message);
+
+            </script>
 
         </div>
 
         <div class="practice">
             <h1> JavaScript Escape Sequence</h1>
             <p> Write an image to the page </p>
-
+            <script>
+                document.write("<img src=\"img/doorclose.jpg\">");
+                document.write("<img src=\"img/die1.png\">");
+            </script>
             <p> Write a table to the page </p>
+            <script>
+                document.write("<table>");
+                document.write("<tr> <td colspan = \"2\">Information </td></tr>");
+                document.write("<tr><td> A </td><td> B </td></tr>");
+                document.write("</table>");
+            </script>
 
         </div>
 
@@ -55,6 +81,10 @@
             <h1>Window and Document Object </h1>
             <p> Try alert, open, location, url </p>
             <script>
+                window.open();
+                window.alert("Hello World");
+                window.close();
+                console.log(window.location);
 
             </script>
 
@@ -74,10 +104,16 @@
             <p id="p1"> Paragraph Number One </p>
             <p id="p2"> Paragraph Number two </p>
             <p id="p3"> Paragraph Number three </p>
-            <p>Please write JavaScript code to change the content of each paragraph.​
+            <p>Please write JavaScript code to change the content of each paragraph.​</p>
             <p>
-
-
+                <script>
+                    document.getElementById("p1").innerHTML = "<b>Changed</b>";
+                    document.getElementById("p2").innerHTML = "<img src=\"img/dooropencar.jpg\">"
+                    document.getElementById("p3").innerHTML = "<img src=\"img/mii.jpg\">"
+                    var A = document.getElementById("p3");
+                    console.log(typeof (A));
+                </script>
+            </p>
         </div>
 
         <div class="practice">
@@ -85,11 +121,19 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
+                    // Get input from the form
+                    var num1 = parseInt(document.getElementById("fnum").value);
+                    var num2 = parseInt(document.getElementsByName("num2")[0].value);
+                    var num3 = document.querySelector("#fnum").value;
+                    // Perform calculation
+                    var result = num1 + num2;
 
+                    //Output
+                    document.getElementById("result").textContent = "--" + result;
 
                 }
             </script>
-            <p> <input type="text" name="num1" /> + <input type="text" name="num2">
+            <p> <input type="text" name="num1" id="fnum" /> + <input type="text" name="num2">
                 <input type="button" value="=" onclick="calculate();">
                 <label id="result"> ? </label>
             </p>
@@ -108,7 +152,20 @@
                 <p id="message">
 
                 </p>
+                <script>
+                    function welcome() {
+                        console.log("Event fired --- Welcome");
+                        var name = document.getElementById("cName").value;
+                        document.getElementById("message").textContent = "Welcome " + name;
+                    }
+                    // Event and the object
+                    var e1 = document.getElementById("cName");
+                    //For debugging console.log(e1);
 
+                    // Associate the event with the event handler
+                    e1.addEventListener("blur", welcome, false);
+
+                </script>
                 <p>
                     <label> Email:
                         <input type="text" id="cEmail">
@@ -121,23 +178,42 @@
         <div class="practice">
             <h1> Practice - Calculate Square</h1>
             Calculating Square:
-            <input type="text" id="num" placeholder="Type in a number"> <sup> 2 </sup> =
-            <label id="result"> ? </label>
-
+            <input type="text" id="squarenum" placeholder="Type in a number"> <sup> 2 </sup> =
+            <label id="results"> ? </label>
+            <script>
+                function sqnum() {
+                    console.log("Calculate Square --- fired");
+                    var n = parseInt(document.getElementById("squarenum").value);
+                    var ans = n * n;
+                    document.getElementById("results").textContent = ans;
+                }
+                var v2 = document.getElementById("squarenum");
+                v2.addEventListener("blur", sqnum, false);
+            </script>
         </div>
 
         <div class="practice">
             <h1> Difference between textcontent and innerHTML</h1>
             <p> HTML Try it Editor </p>
             <p>ENTER your code </p>
-            <textarea cols="40" rows="20" id="code">  
+            <textarea cols="40" rows="20" id="code">
 
             </textarea>
 
-            <input type="button" id="tryit" value="Click and Display"> 
+            <input type="button" id="tryit" value="Click and Display">
 
-            <div id="message"> 
+            <div id="messageHTML">
             </div>
+
+            <script>
+                function changeHTML() {
+                    console.log("Calculate button")
+                    var code = document.getElementById("code").textContent;
+                    document.getElementById("messageHTML").innerHTML = code;
+                }
+                var btn = document.getElementById("tryit");
+                btn.addEventListener("click", changeHTML, false);
+            </script>
 
 
         </div>
@@ -149,19 +225,41 @@
                 <select id="year">
                     <option> 2003</option>
                     <option> 2004</option>
-                </select>.</p>
+                </select>.
+            </p>
             <p>Please enter the condition of the car
                 <select id="condition">
                     <option> Fair</option>
                     <option> Good</option>
-                </select>.</p>
+                </select>.
+            </p>
 
             <p id="price">
 
             </p>
 
             <script type="text/javascript">
+                // Event  --- When the value changes, the price will be updated.
+                function getcarprice() {
+                    console.log("Change action works!");
+                    // Get inputs
+                    var year = document.getElementById("year").value;
+                    var condition = document.getElementById("condition").value;
+                    console.log(year, condition);
+                    // Make decision
+                    if (year == "2003" && condition == "Fair") {
+                        prices = 2000;
+                    }
+                    else {
+                        prices = 1000;
+                    }
 
+                    // Shout output
+                    document.getElementById("price").textContent = prices.toString();
+                }
+
+                // Register event with the event handler
+                document.querySelector("#year").addEventListener("change", getcarprice, false);
 
 
             </script>
@@ -174,6 +272,34 @@
                 <input type="text" id="theme">
             </p>
 
+
+
+            <script>
+                // Event --blur eventHandler-- change background color
+                function changeTheme() {
+                    console.log("Theme is activated");
+                    var theme = document.getElementById("theme").value;
+                    console.log(theme);
+
+                    var color = "white";
+                    switch (theme) {
+                        case "warm":
+                            color = "green";
+                            break;
+                        case "hot":
+                            color = "red";
+                            break;
+                        default:
+                            break;
+                    }
+                    document.body.style.backgroundColor = color;
+                }
+
+
+
+                // Register the event
+                document.getElementById("theme").addEventListener("blur", changeTheme, false);
+            </script>
         </div>
 
 
@@ -181,9 +307,9 @@
         <div class="practice">
             <h1> Switch practice -- Insurance Application</h1>
             <p> Choose your coverage
-                <input type="radio" name="coverage" value="100000">100000
-                <input type="radio" name="coverage" value="200000">200000
-                <input type="radio" name="coverage" value="300000">300000
+                <input type="radio" name="coverage" id="cover1" value="100000" checked>100000
+                <input type="radio" name="coverage" id="cover2" value="200000">200000
+                <input type="radio" name="coverage" id="cover3" value="300000">300000
 
             </p>
             <p> Choose your age group.
@@ -197,12 +323,63 @@
 
             </p>
             <p>
-                <input type="button" value="Check Premium">
+                <input type="button" value="Check Premium" id="but">
             </p>
             <p id="result">
 
             </p>
 
+            <script>
+                function insurance() {
+                    // Get the name 
+                    var coverage = parseFloat(document.getElementsByName("coverage")[0].value);
+                    var otherway = document.querySelector("input[name = 'coverage']").value;
+                    console.log("Coverage activated")
+
+                    var ageIndex = document.getElementById("agegroup").selectedIndex;
+                    console.log(ageIndex)
+                    // Make decision
+
+                    var premium = 0;
+                    var base = 10;
+                    var agefactor = 0;
+                    switch (agefactor) {
+                        case 0:
+                            ageIndex = .08;
+                            break;
+                        case 1:
+                            agefactor = .09;
+                            break;
+                        case 2:
+                            agefactor = .11;
+                            break;
+                        case 3:
+                            agefactor = .17;
+                            break;
+                        case 4:
+                            ageIndex = .29;
+                            break;
+                        case 5:
+                            ageIndex = .48;
+                            break;
+                        case 6:
+                            ageIndex = .75;
+                            break;
+                        case 7:
+                            ageIndex = 1.17;
+                            break;
+                        default:
+                            break;
+                    }
+                    premium = base + agefactor * coverage / 1000
+                    document.getElementById("result").textContent = "Premium = "+premium;
+
+                    // Get coverage input
+                    var coverage = document.querySelector("input[name='coverage']:checked").value;
+
+                }
+                document.getElementById("but").addEventListener("click",insurance,false);
+            </script>
         </div>
 
 
@@ -224,14 +401,38 @@
             <!--  Input number box -->
             <p> N = <input type="number" min="1" max="10" id="inputnumber2"> </p>
             <p>
-                <input type="button" value="Click for multiplication table">
+                <input type="button" id="dotable" value="Click for multiplication table">
             </p>
 
             <!-- output section -->
-            <div id="output">
+            <div id="looptable">
 
 
             </div>
+            <script>
+                function mult() {
+                    console.log("button clicked --- in mult")
+                    var num = parseInt(document.getElementById("inputnumber2").value);
+                    var output = "";
+                    output += "<table>";
+                    for (let i = 1; i <= num; i++) {
+                        output += "<tr>";
+                            // inside loop
+                            for (let j = 1; j <= num; j++) {
+                                product = i * j;
+                                output += "<td>" + i +"x" + j + "=" + product + "</td>";
+                                
+                            }
+                        output += "</tr>";
+                    }
+                    output += "</table>";
+                    console.log(output)
+                    document.getElementById("looptable").innerHTML = output;
+                } 
+
+                // bind the event
+                document.getElementById("dotable").addEventListener("click", mult, false);
+            </script>
 
         </div>
 
@@ -257,7 +458,7 @@
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
             <p> <input type="button" id="roll" value="roll" /> </p>
-            <p> <img src="img/die1.png"> </p>
+            <p> <img src="img/die1.png" id="dieImage"> </p>
             <table>
                 <tr>
                     <th>Result</th>
@@ -278,6 +479,38 @@
                     <td id="r6"></td>
                 </tr>
             </table>
+            <script>
+                // Practice on array
+                /*
+                var testarray = [1, 2, 3, 4, 5, 6];
+                testarray.push(7);
+                testarray.push(10);
+                console.log(testarray);
+                for (var i in testarray){
+                    console.log(i, testarray[i]);
+                }
+                testarray.forEach(e => console.log(e));
+                */
+
+
+                var statistics = [0,0,0,0,0,0];
+                // Event and event handler
+                function rolldice(){
+                    // Get random number from 1 - 6
+                    var n = Math.floor(Math.random()*6)+1;
+                    // Update the statistics
+                    statistics[n-1] += 1;
+
+                    // Change the image src attribute
+                    var e = document.getElementById("dieImage");
+                    e.setAttribute("src", "img/die" + n + ".png");
+                    // Update the table
+                    document.getElementById("r" + n).textContent = statistics[n-1].toString();
+                }
+
+                // Register the event
+                document.getElementById("roll").addEventListener("click", rolldice, false);
+            </script>
 
         </div>
 
@@ -299,9 +532,21 @@
             <div class="img-container-hide">
                 <img src="img/usca5.jpg" alt="usca">
             </div>
-			<script>
-				
-			</script>
+            <script>
+                var imgList = document.querySelectorAll(".img-container-hide");
+                var index = 0;
+                imgList[0].setAttribute("class", "image-container");
+
+                function updateBanner(){
+                    imgList[index].setAttribute("class", "image-container-hide");
+                    index++;
+                    index = index % 5;
+                    imgList[index].setAttribute("class", "image-container");
+                }
+
+                // Auto update the banner
+                setInterval(updateBanner, 5000);
+            </script>
 
 
         </div>
@@ -336,6 +581,7 @@
                         <input id="lists" type="button" value="List current reservations">
                     </p>
                 </form>
+                <div id="guestlist"></div>
                 <script src="js/hotel.js"></script>
             </div>
 
@@ -343,10 +589,10 @@
 
 
         <div class="practice">
-            <h1>  HTML Canvas </h1>
+            <h1> HTML Canvas </h1>
             <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
-                    Your browser does not support the HTML5 canvas tag.</canvas>
-            <div id="drawing">  </div>
+                Your browser does not support the HTML5 canvas tag.</canvas>
+            <div id="drawing"> </div>
             <p> Some P5.js examples </p>
             <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
             <script src="js/draw.js"></script>
